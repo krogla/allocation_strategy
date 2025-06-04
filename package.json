@@ -1,0 +1,31 @@
+{
+  "name": "allocation-strategy",
+  "version": "0.0.1",
+  "description": "Lido Stake Market Allocation Strategy",
+  "repository": "https://github.com/lidofinance/alloc-strategy.git",
+  "author": "KRogLA <https://github.com/krogla>",
+  "license": "GPL-3.0",
+  "private": true,
+  "scripts": {
+    "lint:solhint": "solhint './src/**/*.sol'",
+    "lint:check": "forge fmt --check && yarn lint:solhint",
+    "lint:fix": "forge fmt",
+    "generate:diffyscan": "node script/generateDiffyscanContracts.js",
+    "scc:report": "scc src --sort names --no-cocomo --exclude-dir interfaces --by-file --format wide > scc-report.txt",
+    "scm:report": "solidity-code-metrics $(tree -f -i -I '*interfaces*' | grep '^./src.*sol' | xargs ls -d 2>/dev/null) > scm-report.md"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.2",
+    "prettier": "^3.4.2",
+    "prettier-plugin-solidity": "^1.4.2",
+    "solhint": "5.0.5",
+    "solhint-plugin-lido-csm": "https://github.com/lidofinance/solhint-plugin-lido-csm.git#0.3.3",
+    "solidity-code-metrics": "^0.0.28"
+  },
+  "lint-staged": {
+    "*": "prettier --ignore-unknown --write",
+    "src/**/*.sol": "solhint"
+  },
+  "packageManager": "yarn@4.6.0"
+}

@@ -1,0 +1,27 @@
+node_modules/
+
+.env
+.idea
+.vscode
+.direnv
+.DS_Store
+
+# Foundry files
+broadcast/
+cache/
+out/
+localhost.json
+lcov.info
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+lib/*
+
+scc-report.*
+scm-report.*

@@ -5,8 +5,7 @@ pragma solidity 0.8.28;
 import {StdCheats} from "forge-std/StdCheats.sol";
 import {Test} from "forge-std/Test.sol";
 
-import {DeployParams} from "../../script/DeployBase.sol";
-import {CCR} from "../../src/CCR.sol";
+// import {DeployParams} from "../../script/DeployBase.sol";
 
 import {ILidoLocator} from "../../src/interfaces/ILidoLocator.sol";
 import {IStakingRouter} from "../../src/interfaces/IStakingRouter.sol";
@@ -57,7 +56,7 @@ contract DeploymentFixtures is StdCheats, Test {
         address lidoLocator;
     }
 
-    CCR public ccr;
+    // CCR public ccr;
     ILidoLocator public locator;
     IStakingRouter public stakingRouter;
 
@@ -68,30 +67,30 @@ contract DeploymentFixtures is StdCheats, Test {
         return env;
     }
 
-    function initializeFromDeployment(string memory deployConfigPath) public {
-        string memory config = vm.readFile(deployConfigPath);
-        DeploymentConfig memory deploymentConfig = parseDeploymentConfig(config);
-        assertEq(deploymentConfig.chainId, block.chainid, "ChainId mismatch");
+    // function initializeFromDeployment(string memory deployConfigPath) public {
+    //     string memory config = vm.readFile(deployConfigPath);
+    //     DeploymentConfig memory deploymentConfig = parseDeploymentConfig(config);
+    //     assertEq(deploymentConfig.chainId, block.chainid, "ChainId mismatch");
 
-        ccr = CCR(deploymentConfig.ccr);
-        locator = ILidoLocator(deploymentConfig.lidoLocator);
-        stakingRouter = IStakingRouter(locator.stakingRouter());
-    }
+    //     ccr = CCR(deploymentConfig.ccr);
+    //     locator = ILidoLocator(deploymentConfig.lidoLocator);
+    //     stakingRouter = IStakingRouter(locator.stakingRouter());
+    // }
 
-    function parseDeploymentConfig(string memory config) public returns (DeploymentConfig memory deploymentConfig) {
-        deploymentConfig.chainId = vm.parseJsonUint(config, ".ChainId");
+    // function parseDeploymentConfig(string memory config) public returns (DeploymentConfig memory deploymentConfig) {
+    //     deploymentConfig.chainId = vm.parseJsonUint(config, ".ChainId");
 
-        deploymentConfig.ccr = vm.parseJsonAddress(config, ".CCR");
-        vm.label(deploymentConfig.ccr, "csm");
+    //     deploymentConfig.ccr = vm.parseJsonAddress(config, ".CCR");
+    //     vm.label(deploymentConfig.ccr, "csm");
 
-        deploymentConfig.lidoLocator = vm.parseJsonAddress(config, ".LidoLocator");
-        vm.label(deploymentConfig.lidoLocator, "LidoLocator");
-    }
+    //     deploymentConfig.lidoLocator = vm.parseJsonAddress(config, ".LidoLocator");
+    //     vm.label(deploymentConfig.lidoLocator, "LidoLocator");
+    // }
 
-    function parseDeployParams(string memory deployConfigPath) internal view returns (DeployParams memory) {
-        string memory config = vm.readFile(deployConfigPath);
-        return abi.decode(vm.parseJsonBytes(config, ".DeployParams"), (DeployParams));
-    }
+    // function parseDeployParams(string memory deployConfigPath) internal view returns (DeployParams memory) {
+    //     string memory config = vm.readFile(deployConfigPath);
+    //     return abi.decode(vm.parseJsonBytes(config, ".DeployParams"), (DeployParams));
+    // }
 
     function _isEmpty(string memory s) internal pure returns (bool) {
         return keccak256(abi.encodePacked(s)) == keccak256(abi.encodePacked(""));

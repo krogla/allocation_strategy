@@ -13,16 +13,12 @@ out = "out"
 libs = ["lib"]
 cache_path  = "cache"
 
+#auto_detect_remappings = false
 
 block_gas_limit = 30_000_000
 fuzz = { runs = 256 }
 
-gas_reports = [
-    "CCR",
-    "CCRDataStorage",
-    "OssifiableProxy"
-]
-
+gas_reports = ["*"]
 
 fs_permissions = [
     { access = "read-write", path = "./out" },

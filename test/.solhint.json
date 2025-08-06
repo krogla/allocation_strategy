@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "foundry-test-functions": [
+      "warn",
+      [
+        "setUp"
+      ]
+    ]
+  }
+}

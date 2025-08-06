@@ -6,13 +6,13 @@ pragma solidity 0.8.28;
 import {IStakingModule} from "../../../src/interfaces/IStakingModule.sol";
 
 abstract contract StakingModuleMock is IStakingModule {
-    struct NO {
+    struct Operator {
         bool active;
         address rewardAddress;
         uint32 totalAddedKeys;
     }
 
-    NO[] public ops;
+    Operator[] public ops;
 
     function addNo(bool active, address rewAddr, uint32 keys) public {
         uint256 id = ops.length;

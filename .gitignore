@@ -25,3 +25,5 @@ lib/*
 
 scc-report.*
 scm-report.*
+
+temp/

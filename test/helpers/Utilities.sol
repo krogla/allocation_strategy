@@ -28,5 +28,30 @@ contract Utilities is CommonBase {
         );
     }
 
+    function convertArrUint8toUint256(uint8[] memory array8) internal pure returns (uint256[] memory array256) {
+        array256 = new uint256[](array8.length);
+        for (uint256 i = 0; i < array8.length; i++) {
+            array256[i] = array8[i];
+        }
+    }
 
+    function convertArrUint16toUint256(uint16[] memory array16) internal pure returns (uint256[] memory array256) {
+        array256 = new uint256[](array16.length);
+        for (uint256 i = 0; i < array16.length; i++) {
+            array256[i] = array16[i];
+        }
+    }
+
+    function convertArrUint32toUint256(uint32[] memory array32) internal pure returns (uint256[] memory array256) {
+        array256 = new uint256[](array32.length);
+        for (uint256 i = 0; i < array32.length; i++) {
+            array256[i] = array32[i];
+        }
+    }
+    function convertArrFixed16ToUint256(uint256[16] memory array) internal pure returns (uint256[] memory array256) {
+        array256 = new uint256[](array.length);
+        for (uint256 i = 0; i < array.length; i++) {
+            array256[i] = array[i];
+        }
+    }
 }

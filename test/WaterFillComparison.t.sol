@@ -5,6 +5,7 @@ import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
 import {WaterFillOptimized} from "../src/lib/WaterFill1.sol";
 import {WaterFillNoSort} from "../src/lib/WaterFill2.sol";
+import {WaterFillSimple} from "../src/lib/WaterFill3.sol";
 import {IWaterFill} from "../src/interfaces/IWaterFill.sol";
 
 /// @title WaterFill Algorithm Comparison Test
@@ -15,9 +16,9 @@ contract WaterFillComparisonTest is Test {
     IWaterFill public waterFill2;
 
     // Test sizes for performance analysis
-    // uint256[] testSizes = [20, 100, 400];//, 800]; //, 1000, 2000];
-    // uint256[] testSizes = [500, 600, 700];//, 800]; //, 1000, 2000];
-    uint256[] testSizes = [999]; //, 800]; //, 1000, 2000];
+    // uint256[] testSizes = [20, 100, 400];
+    // uint256[] testSizes = [500, 600, 700];
+    uint256[] testSizes = [999];
 
     struct TestResult {
         uint256 gasUsed;
@@ -38,7 +39,8 @@ contract WaterFillComparisonTest is Test {
 
     function setUp() public {
         waterFill1 = new WaterFillOptimized();
-        waterFill2 = new WaterFillNoSort();
+        // waterFill2 = new WaterFillNoSort();
+        waterFill2 = new WaterFillSimple();
     }
 
     /// @notice Main comparison test across all input sizes

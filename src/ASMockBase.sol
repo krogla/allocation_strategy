@@ -202,41 +202,6 @@ abstract contract ASMockBase {
         return AS_STORAGE.getMetricValues(eId);
     }
 
-    // function calcAllocExpo(uint16[] calldata values, uint256 amount)
-    //     public
-    //     pure
-    //     returns (uint16[] memory ecIdxs, ValueCountWeight[] memory vcWeights, uint256[] memory allocation)
-    // {
-    //     // w(v)=r^v, where `r=A^k`
-    //     // e.g.: A=2, k=1e-4 => r = 2^0.0001 ≈ 1.000069 or pre-computed 32.32:uint64 r = 4294970000;
-    //     // r = 1.1, 32.32:uint64 r = 4724464025
-    //     Fixed32x32 r = Fixed32x32.wrap(4724464025); // pre-computed 32.32
-    //     (ecIdxs, vcWeights) = values.getValueWeightsExp(r);
-    //     allocation = calcAllocation(amount, vcWeights);
-    // }
-
-    // function calcAllocLinear(uint16[] calldata values, uint256 amount)
-    //     public
-    //     pure
-    //     returns (uint16[] memory ecIdxs, ValueCountWeight[] memory vcWeights, uint256[] memory allocation)
-    // {
-    //     (ecIdxs, vcWeights) = values.getValueWeights();
-    //     allocation = calcAllocation(amount, vcWeights);
-    // }
-
-    // function calcAllocation(uint256 amount, ValueCountWeight[] memory vcWeights)
-    //     public
-    //     pure
-    //     returns (uint256[] memory allocation)
-    // {
-    //     uint256 eCnt = vcWeights.length;
-    //     allocation = new uint256[](eCnt);
-    //     //
-    //     for (uint256 i; i < eCnt; ++i) {
-    //         allocation[i] = vcWeights[i].getW().mul(amount);
-    //     }
-    // }
-
     // ### INTERNALS ###
 
     function _mockData() internal pure virtual returns (MockData memory d) {

@@ -79,6 +79,11 @@ library PouringMath {
         rest = _pourWaterFill(imbalance, fills, outflow);
     }
 
+    // `capacity` - extra inflow for current entity that can be fitted into
+    // i.e. max total inflow of current entity is `inflow + capacity`
+    // capacity = 0, means no more can be added
+    // `target` - max desired total inflow that should be allocated to current entity
+
     /// @param imbalance The current imbalance for each entity (mutated array)
     /// @param shares The shares of each  entity
     /// @param amounts The current amounts allocated to each entity
@@ -372,86 +377,4 @@ library PouringMath {
         if (left < j) _quickSort(arr, left, j);
         if (i < right) _quickSort(arr, i, right);
     }
-
-    // `capacity` - extra inflow for current entity that can be fitted into
-    // i.e. max total inflow of current entity is `inflow + capacity`
-    // capacity = 0, means no more can be added
-    // `target` - max desired total inflow that should be allocated to current entity
-    // function _calcImbalanceMutate(
-    //     uint256[] memory amounts,
-    //     uint256[] memory capacities,
-    //     uint256[] memory targets,
-    //     bool directionUp
-    // ) internal pure returns (uint256[] memory imbalance) {
-    //     uint256 n = amounts.length;
-    //     if (targets.length != n || (capacities.length != n)) revert LengthMismatch();
-
-    //     // compute only deficits below targets but capped by capacity
-    //     for (uint256 i; i < n; ++i) {
-    //         uint256 target = targets[i];
-    //         uint256 amt = amounts[i];
-
-    //         if (target <= amt) {
-    //             target = directionUp ? 0 : amt - target;
-    //             // if (target > 0) {
-    //             //     uint256 cap = capacities[i];
-    //             //     target = target < cap ? cap : target; // enforce capacity if limited
-    //             // }
-    //         } else {
-    //             target = directionUp ? target - amt : 0;
-    //             if (target > 0) {
-    //                 uint256 cap = capacities[i];
-    //                 target = cap < target ? cap : target; // enforce capacity if limited
-    //             }
-    //         }
-    //         targets[i] = target;
-    //     }
-    //     return targets;
-    // }
-
-    // function _calcImbalance(
-    //     uint256[] memory shares,
-    //     uint256[] memory amounts,
-    //     uint256[] memory capacities,
-    //     uint256[] memory fills,
-    //     uint256 totalAmount
-    // )
-    //     // bool noIn,
-    //     // bool noOut
-    //     internal
-    //     pure
-    //     returns (int256[] memory imbalance)
-    // {
-    //     uint256 n = shares.length;
-    //     if (amounts.length != n || capacities.length != n || fills.length != n) revert LengthMismatch();
-
-    //     imbalance = new int256[](n);
-    //     if (totalAmount > 0) {
-    //         unchecked {
-    //             for (uint256 i; i < n; ++i) {
-    //                 uint256 target = shares[i];
-    //                 if (target != 0) {
-    //                     target = Math.mulShr(target, totalAmount, 32, Math.Rounding.Ceil);
-    //                 }
-    //                 int256 imb = int256(target) - int256(amounts[i] + fills[i]);
-    //                 if (imb > 0) {
-    //                     // if (noIn) {
-    //                     //     imb = 0;
-    //                     // } else {
-    //                     int256 cap = int256(capacities[i]);
-    //                     if (cap < imb) {
-    //                         imb = cap;
-    //                     }
-    //                     // }
-    //                     // } else if (noOut) {
-    //                     //     imb = 0;
-    //                 }
-    //                 // optional ignore inflows/outflows
-    //                 // if (imb < 0 && noOut || (imb > 0 && noIn)) imb = 0;
-
-    //                 imbalance[i] = imb;
-    //             }
-    //         }
-    //     }
-    // }
 }

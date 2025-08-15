@@ -2,22 +2,22 @@
 pragma solidity 0.8.28;
 
 library ASConvertor {
-    uint16 constant FEE_MIN = 0; // bps
-    uint16 constant FEE_MAX = 500; // bps
-    uint16 constant FEE_MIN_WEIGHT = 5000; //bps
-    uint16 constant FEE_MAX_WEIGHT = 25000; //bps
+    uint16 public constant FEE_MIN = 0; // bps
+    uint16 public constant FEE_MAX = 500; // bps
+    uint16 public constant FEE_MIN_WEIGHT = 5000; //bps
+    uint16 public constant FEE_MAX_WEIGHT = 25000; //bps
 
-    uint16 constant TECH_DVT = 1;
-    uint16 constant TECH_VANILLA = 0;
-    uint16 constant TECH_DVT_WEIGHT = 15000; //bps
-    uint16 constant TECH_VANILLA_WEIGHT = 10000; //bps
+    uint16 public constant TECH_DVT = 1;
+    uint16 public constant TECH_VANILLA = 0;
+    uint16 public constant TECH_DVT_WEIGHT = 15000; //bps
+    uint16 public constant TECH_VANILLA_WEIGHT = 10000; //bps
 
-    uint16 constant PERF_GOOD = 9500; //bps
-    uint16 constant PERF_LOW = 8500; //bps
-    uint16 constant PERF_BAD = 7000; //bps
-    uint16 constant PERF_GOOD_WEIGHT = 10000; //bps
-    uint16 constant PERF_LOW_WEIGHT = 8000; //bps
-    uint16 constant PERF_BAD_WEIGHT = 3000; //bps
+    uint16 public constant PERF_GOOD = 9500; //bps
+    uint16 public constant PERF_LOW = 8500; //bps
+    uint16 public constant PERF_BAD = 7000; //bps
+    uint16 public constant PERF_GOOD_WEIGHT = 10000; //bps
+    uint16 public constant PERF_LOW_WEIGHT = 8000; //bps
+    uint16 public constant PERF_BAD_WEIGHT = 3000; //bps
 
     error BPSOverflow();
 

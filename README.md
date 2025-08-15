@@ -1,17 +1,10 @@
-## Foundry
+# Target Share Allocation Strategy
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository contains a smart contract library designed to implement allocation strategies for Lido ValMart. The main focus is on optimizing validator selection through reputation-weighted calculations and efficient resource distribution using the simplified WaterFilling algorithm.
 
-Foundry consists of:
+The library is optimized for gas consumption and supports up to 16 different metrics (parameters) that determine the final weight of each entity and its share in the overall distribution. Each read or update operation has O(1) complexity, allowing efficient data retrieval and updates for specific entities. The test suite includes successful validation with 1000 concurrent entities.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
+The library is built with Foundry and includes comprehensive tests and documentation to ensure reliability and ease of use.
 
 ## Usage
 
@@ -24,43 +17,5 @@ $ forge build
 ### Test
 
 ```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+$ forge test test/ASMockValMart.t.sol -vvv --gas-report
 ```

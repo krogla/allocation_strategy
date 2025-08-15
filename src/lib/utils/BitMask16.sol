@@ -18,7 +18,7 @@ library BitMask16 {
 
     /// @notice Convert bitmask to array
     function bitsToValues(uint16 m) internal pure returns (uint8[] memory values) {
-        // Create array with categories
+        // Create array with metrics
         values = new uint8[](countBits(m));
         uint256 index = 0;
         for (uint8 i = 0; i < 16; ++i) {

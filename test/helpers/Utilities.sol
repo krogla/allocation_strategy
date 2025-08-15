@@ -48,10 +48,25 @@ contract Utilities is CommonBase {
             array256[i] = array32[i];
         }
     }
+
     function convertArrFixed16ToUint256(uint256[16] memory array) internal pure returns (uint256[] memory array256) {
         array256 = new uint256[](array.length);
         for (uint256 i = 0; i < array.length; i++) {
             array256[i] = array[i];
+        }
+    }
+
+    function generateVals(uint256 size, uint16 min, uint16 max, uint256 rounding)
+        internal
+        returns (uint16[] memory targets)
+    {
+        targets = new uint16[](size);
+        for (uint256 i = 0; i < targets.length; i++) {
+            // Generate pseudo-random values between min and max
+            seed = keccak256(abi.encode(seed, i));
+            uint256 res = (uint256(seed) % (max - min + 1)) + min;
+            // round to nearest
+            targets[i] = uint16(rounding > 1 ? res / rounding * rounding : res);
         }
     }
 }

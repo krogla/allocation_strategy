@@ -103,14 +103,11 @@ contract WeightsAllocTest is ASCommon {
             uint256 eId = _d.eIds[i];
             uint16[] memory vals = AS_STORAGE.getMetricValues(eId);
             emit log_named_array(
-                string(abi.encodePacked("Metric values for entity ", vm.toString(eId))),
-                convertArrUint16toUint256(vals)
+                string(abi.encodePacked("Metric values for entity ", vm.toString(eId))), convertArrUint16toUint256(vals)
             );
         }
         ASCore.Strategy memory s = AS_STORAGE._getStrategyRaw(_d.sIds[0]);
-        emit log_named_array(
-            string(abi.encodePacked("[debug] sumX for metrics ")), convertArrFixed16ToUint256(s.sumX)
-        );
+        emit log_named_array(string(abi.encodePacked("[debug] sumX for metrics ")), convertArrFixed16ToUint256(s.sumX));
 
         for (uint8 i = 0; i < _d.sIds.length; i++) {
             uint8 sId = _d.sIds[i];

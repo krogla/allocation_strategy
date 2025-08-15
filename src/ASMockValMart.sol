@@ -47,8 +47,7 @@ contract ASMockValMart is ASMockBase {
 
         d.metrics = new MockDataMetric[](cIds.length);
 
-        d.metrics[0] =
-            MockDataMetric({id: 0, description: "Fee", defWeight: 0, mValues: new uint16[](eIds.length)});
+        d.metrics[0] = MockDataMetric({id: 0, description: "Fee", defWeight: 0, mValues: new uint16[](eIds.length)});
         d.metrics[0].mValues[0] = 50; // 0.50%
         d.metrics[0].mValues[1] = 250; // 2.50%
         d.metrics[0].mValues[2] = 200; // 2.00%

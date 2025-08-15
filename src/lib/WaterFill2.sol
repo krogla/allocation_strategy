@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
+
 import {IWaterFill} from "../interfaces/IWaterFill.sol";
+
 contract WaterFillNoSort is IWaterFill {
     /**
      * @notice Разливает inflow по массиву target_i, чтобы

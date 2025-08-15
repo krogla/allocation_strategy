@@ -112,7 +112,8 @@ contract ASTest is ASCommon {
             }
 
             emit log_named_array(
-                string(abi.encodePacked("Metric new values for entity ", vm.toString(eId))), convertArrUint16toUint256(vals)
+                string(abi.encodePacked("Metric new values for entity ", vm.toString(eId))),
+                convertArrUint16toUint256(vals)
             );
         }
 

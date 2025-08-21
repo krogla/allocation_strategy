@@ -169,7 +169,6 @@ library PouringMath {
 
     /// @notice Simplified water-fill style allocator that distributes an `inflow` across baskets
     ///         toward absolute target amounts, respecting per-basket capacities.
-
     function _pourSimple(uint256[] memory targets, uint256[] memory fills, uint256 inflow)
         internal
         pure
@@ -185,7 +184,6 @@ library PouringMath {
 
         // Water-fill loop: distribute left across remaining deficits roughly evenly.
         // Complexity: O(k * n) where k is number of rounds; in worst case k <= max(deficit) when per==1.
-        // This matches style of original library (simple, gas-reasonable for small N).
         // bool[] memory active = new bool[](n);
         uint256 total;
         uint256 count;
@@ -254,12 +252,13 @@ library PouringMath {
         uint256 n = targets.length;
         if (fills.length != n) revert LengthMismatch();
 
-        // 0) Пустой массив
+        // 0) Empty array
         if (n == 0) {
             rest = inflow;
             return rest;
         }
-        // 1) Один элемент
+
+        // 1) One element
         if (n == 1) {
             uint256 t = targets[0];
             uint256 pay = inflow >= t ? t : inflow;
@@ -268,17 +267,17 @@ library PouringMath {
             return (rest);
         }
 
-        // 1) Собираем IndexedTarget {-структуры в памяти
+        // 1) create array of IndexedTarget
         IndexedTarget[] memory items = new IndexedTarget[](n);
         for (uint256 i; i < n; ++i) {
             uint256 t = targets[i];
             items[i] = IndexedTarget({idx: i, target: t});
         }
 
-        // 2) Быстрая сортировка по target DESC (pivot = middle element)
+        // 2) Quick sort by target DESC (pivot = middle element)
         _quickSort(items, int256(0), int256(n - 1));
 
-        // 3) Префикс-суммы cap, и быстрый путь если inflow >= total
+        // 3) Compute prefix sums and quick path if inflow >= total
         uint256 total;
         uint256[] memory prefix = new uint256[](n);
 
@@ -306,7 +305,7 @@ library PouringMath {
             return rest;
         }
 
-        // 4) Ищем уровень L: первый k где
+        // 4) find level L: 1st k where
         //    items[k].target ≥ Lk ≥ nextTarget; Lk = (prefix[k]-inflow)/(k+1)
         uint256 level;
         unchecked {
@@ -322,7 +321,7 @@ library PouringMath {
             }
         }
 
-        // 5) Финальный pass: fill = max(0, cap - L)
+        // 5) final pass: fill = max(0, cap - L)
         uint256 used;
         unchecked {
             for (uint256 i; i < n; ++i) {
